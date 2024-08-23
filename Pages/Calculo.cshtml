@@ -1,0 +1,37 @@
+@page
+@model CalculoModel
+
+<h2>Cálculo de Juros Compostos</h2>
+
+<form method="post">
+    <div>
+        <label for="valorInicial">Valor Inicial:</label>
+        <input type="number" asp-for="ValorInicial" />
+    </div>
+    <div>
+        <label for="valorMensal">Valor Mensal:</label>
+        <input type="number" asp-for="ValorMensal" />
+    </div>
+    <div>
+        <label for="taxaJuros">Taxa de Juros (%):</label>
+        <input type="number" asp-for="TaxaJuros" step="0.01" />
+        <select asp-for="TipoTaxaJuros">
+            <option value="Mensal">% Mensal</option>
+            <option value="Anual">% Anual</option>
+        </select>
+    </div>
+    <div>
+        <label for="tempo">Tempo:</label>
+        <input type="number" asp-for="Tempo" />
+        <select asp-for="TipoTempo">
+            <option value="Meses">Meses</option>
+            <option value="Anos">Anos</option>
+        </select>
+    </div>
+    <button type="submit">Calcular</button>
+</form>
+
+@if (Model.ValorFinal > 0)
+{
+    <p>O valor final após @Model.Tempo @Model.TipoTempo.ToLower() será: @Model.ValorFinal.ToString("C")</p>
+}
